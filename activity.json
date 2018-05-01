@@ -2,7 +2,7 @@
   "name": "Twitter Unfollow Handle",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "ref": "github.com/adireddevil/twitterpost",
+  "ref": "github.com/adireddevil/twitterunfollow",
   "description": "activity description",
   "author": "AllStars",
   "inputs":[
