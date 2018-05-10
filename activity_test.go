@@ -1,4 +1,4 @@
-package unfollow
+package twitterunfollow
 
 import (
 	"io/ioutil"
@@ -36,8 +36,8 @@ func TestCreate(t *testing.T) {
 		return
 	}
 }
-
-func TestGDriveCreateFile_InvalidUser(t *testing.T) {
+/*
+func TestTwitterUnfollow_Success(t *testing.T) {
 
 	defer func() {
 		if r := recover(); r != nil {
@@ -51,11 +51,11 @@ func TestGDriveCreateFile_InvalidUser(t *testing.T) {
 
 	//setup attrs
 
-	tc.SetInput("consumerKey", "NPsc5Cz49sLMkUEwM4gclc6bc")
-	tc.SetInput("consumerSecret", "0OelZ71gGz3CA9vuA5HJwX2tO27XHZkUIZV5scZbM0lK1btjqr")
-	tc.SetInput("accessToken", "990616654353645569-M5rp4NsPuWavBKcT25BOZG4c5sTwf7a")
-	tc.SetInput("accessTokenSecret", "VfmVsLP3ZVp7kQyUU9bC1Vf4FABNT8sQ2MmQYWAHljKZ8")
-	tc.SetInput("twitterHandle", "My First Tweet with GO")
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxNB")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	tc.SetInput("twitterHandle", "LeonStigter")
 
 	act.Eval(tc)
 
@@ -67,8 +67,102 @@ func TestGDriveCreateFile_InvalidUser(t *testing.T) {
 	assert.Equal(t, code, "200")
 
 
+}
+
+func TestTwitterUnfollow_TwitterHandleInvalid(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxNB")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	tc.SetInput("twitterHandle", "Leosigter")
+
+	act.Eval(tc)
+
+	//check result attr
+
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "404")
 
 
+}
+
+
+func TestTwitterUnfollow_TwitterHandleBlank(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxNB")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	tc.SetInput("twitterHandle", "")
+
+	act.Eval(tc)
+
+	//check result attr
+
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "105")
+
+
+} */
+
+
+func TestTwitterUnfollow_InvalidToken(t *testing.T) {
+
+	defer func() {
+		if r := recover(); r != nil {
+			t.Failed()
+			t.Errorf("panic during execution: %v", r)
+		}
+	}()
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	//setup attrs
+
+	tc.SetInput("consumerKey", "6f2ogTcNPK0Mf6OO6DSL0GxN")
+	tc.SetInput("consumerSecret", "Hb8gDvSnfIkLuO6L6NQWakf8w2OHBnfrH1z4Cjh8IrCsGa4BDM")
+	tc.SetInput("accessToken", "1026895242-VTblWlyH3J24lsQbJcO7KBxkbd7ByGyUXIkAFTk")
+	tc.SetInput("accessTokenSecret", "h41iwGi3oHwgP01tmVYwY1ceaqaly7RA14zY6oEqigD8b")
+	tc.SetInput("twitterHandle", "themichaelowen")
+
+	act.Eval(tc)
+
+	//check result attr
+
+	code := tc.GetOutput("statusCode")
+	msg := tc.GetOutput("message")
+	fmt.Print(msg)
+	assert.Equal(t, code, "401")
 
 
 }
